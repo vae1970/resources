@@ -1,5 +1,18 @@
-  ubuntu资源文件
-
-1.创建ssh密钥：ssh-keygen -t rsa -C "email@server"
-
-2.
+#### 1. 安装 jdk
+    sudo add-apt-repository ppa:webupd8team/java
+    sudo apt-get update
+    sudo apt-get install oracle-java7-installer
+#### 2. 设置root密码
+    sudo passwd root
+#### 3. 安装依赖包
+	sudo apt install -f
+#### 4. 安装粘贴板工具
+	sudo add-apt-repository ppa:diodon-team/stable
+    sudo apt-get update
+    sudo apt-get install diodon
+#### 5. 安装 Unity Tweak Tool
+    sudo add-apt-repository ppa:freyja-dev/unity-tweak-tool-daily
+    sudo apt-get update
+    sudo apt-get install unity-tweak-tool
+#### 6. 安装oh my zsh
+1. git地址: https://github.com/robbyrussell/oh-my-zsh
