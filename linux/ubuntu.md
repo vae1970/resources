@@ -15,4 +15,7 @@
     sudo apt-get update
     sudo apt-get install unity-tweak-tool
 #### 6. 安装oh my zsh
-1. git地址: https://github.com/robbyrussell/oh-my-zsh
+	1. git地址: https://github.com/robbyrussell/oh-my-zsh
+#### 7. 安装开机自启动管理工具
+	1.apt install sysv-rc-conf
+    2.用空格来控制是否选中，x即代表选中
