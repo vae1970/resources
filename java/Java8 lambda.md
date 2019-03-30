@@ -28,8 +28,9 @@ public static <T, R> Collector<T, ?, List<R>> mapperCollector(Function<T, R> res
 * @param <R>
 * @return Collector
 */
-private static <T, S, R> Collector<T, ?, Map<S, R>> collectorSingle(Function<T, S> secondMapper, Function<T, R> resultMapper) {
-    return Collectors.toMap(secondMapper, resultMapper, (key1, key2) -> key2);
+private static <T, S, R> Collector<T, ?, Map<S, R>> collectorSingle(Function<T, S> secondMapper
+		, Function<T, R> resultMapper) {
+	return Collectors.toMap(secondMapper, resultMapper, (key1, key2) -> key2);
 }
 
 
@@ -61,8 +62,10 @@ public static <T, S> Collector<T, ?, Map<S, List<T>>> collectorList(Function<T, 
 * @param <R>           <R>
 * @return list
 */
-public static <T, R, U extends Comparable<? super U>> List<R> sort(List<T> list, Function<T, U> compareMapper, Function<T, R> resultMapper, Sort.Direction sort) {
-    Comparator<? super T> comparator = Comparator.comparing(compareMapper, Comparator.nullsFirst(Comparator.naturalOrder()));
+public static <T, R, U extends Comparable<? super U>> List<R> sort(List<T> list, Function<T, U> compareMapper
+        , Function<T, R> resultMapper, Sort.Direction sort) {
+    Comparator<? super T> comparator = Comparator
+        .comparing(compareMapper, Comparator.nullsFirst(Comparator.naturalOrder()));
     comparator = sort == Sort.Direction.DESC ? comparator.reversed() : comparator;
     return getNonEmptyList(list).stream().sorted(comparator).map(resultMapper).collect(Collectors.toList());
 }
