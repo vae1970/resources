@@ -1,4 +1,4 @@
-###### 1. collector
+###### 1. Collector
 ```
 /**
  * 自定义mapper的Collector
