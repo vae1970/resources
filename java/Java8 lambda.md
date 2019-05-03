@@ -46,7 +46,17 @@ public static <T, S> Collector<T, ?, Map<S, List<T>>> collectorList(Function<T, 
     return Collectors.groupingBy(compareMapper, Collectors.toList());
 }
 
+
+/**
+* customize collector
+*/
+Collectors.of(Supplier<A> supplier,
+                BiConsumer<A, T> accumulator,
+                BinaryOperator<A> combiner,
+                Function<A, R> finisher,
+                Characteristics... characteristics)
 ```
+
 
 ###### 2. Comparable
 
@@ -92,5 +102,5 @@ public static <T> List<T> filter(List<T> sourceList, List<Predicate<T>> listFilt
     }).orElse(new ArrayList<>());
 }
 
-```
 
+```
