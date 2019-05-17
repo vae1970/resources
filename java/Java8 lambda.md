@@ -55,8 +55,33 @@ Collectors.of(Supplier<A> supplier,
                 BinaryOperator<A> combiner,
                 Function<A, R> finisher,
                 Characteristics... characteristics)
-```
 
+
+/**
+*  group by multiple fields(single level map)
+*/
+public static <T> Map<String, List<T>> groupByMultipleField(List<T> data, List<Function<T, ?>> groupFields) {
+	Function<T, String> groupFunction = i -> {
+		StringBuilder key = new StringBuilder();
+		groupFields.forEach(v -> key.append(v.apply(i)));
+		return key.toString();
+	};
+	if (data != null) {
+		return data.stream().collect(Collectors.groupingBy(groupFunction));
+	} else {
+		return new HashMap<>(0);
+	}
+}
+
+
+/**
+*  group by multiple fields(multiple level map)
+*/
+public static <F, S, T> Map<F, Map<S, List<T>>> groupByMultipleField(List<T> data, Function<T, F> groupField1, Function<T, S> groupField2) {
+	return data.stream().collect(Collectors.groupingBy(groupField1, Collectors.groupingBy(groupField2)));
+}
+
+```
 
 ###### 2. Comparable
 
