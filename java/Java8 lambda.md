@@ -129,3 +129,12 @@ public static <T> List<T> filter(List<T> sourceList, List<Predicate<T>> listFilt
 
 
 ```
+
+###### 3. Function
+```
+/**
+* return i->i
+*/
+Function.identity();
+```
+
