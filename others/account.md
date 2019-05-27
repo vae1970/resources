@@ -16,5 +16,13 @@
 
 <https://github.com/>
 
+<https://gitee.com/>
 
+[https://leetcode-cn.com](https://leetcode-cn.com/)
+
+<https://juejin.im/>
+
+<https://www.google.com/>
+
+<https://www.oschina.net/>
 
