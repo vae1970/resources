@@ -129,3 +129,19 @@ public static <T> List<T> filter(List<T> sourceList, List<Predicate<T>> listFilt
 
 
 ```
+
+###### 3. Function
+```
+/**
+* return i->i
+*/
+Function.identity();
+```
+###### 4. Others
+```
+//	stream to array(primitive data type)
+Integer[] array = Arrays.asList(1, 2, 3).stream().mapToInt(i->i).boxed().toArray(Integer[]::new);
+//	stream to array(wapper class)
+int[] arrayValue = Arrays.asList(1, 2, 3).stream().mapToInt(i -> i).toArray();
+```
+
