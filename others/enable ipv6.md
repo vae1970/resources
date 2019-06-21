@@ -1,3 +1,9 @@
+#### 通用ipv6配置
+1. [https://github.com/killgcd/chromego/blob/master/ChromeGo/8.%E9%85%8D%E7%BD%AEIPv6.bat](https://github.com/killgcd/chromego/blob/master/ChromeGo/8.配置IPv6.bat)
+2. 下载上面的bat文件，或者直接找代码中的server地址替换
+
+#### windows ipv6配置
+
 禁用系统网卡的ipv6协议！！！
 
 
@@ -7,15 +13,31 @@
 在cmd命令行（以管理员方式）中输入：
 
 netsh int teredo set state default
+
 netsh int 6to4 set state default
+
 netsh int isatap set state default
+
 netsh int ipv6 set teredo enterpriseclient
+
 netsh int ter set state enterpriseclient
+
 netsh int 6to4 set state enable 或者 netsh int 6to4 set state automatic
+
 
 ## 验证： 在cmd中输入netsh int ipv6 sh teredo 如果出现以下信息，即表示成功：
 
-## 类型 : enterpriseclient 服务器名称 : win10.ipv6.microsoft.com. 客户端刷新间隔 : 30 秒 客户端端口 : unspecified 状态 : qualified 客户端类型 : teredo client 网络 : managed NAT : cone NAT 特殊行为 : UPNP: 否，PortPreserving: 是 本地映射 : 啥啥啥啥啥哈 外部 NAT 映射 : 啥啥啥啥啥哈
+类型 : enterpriseclient
+服务器名称 : win10.ipv6.microsoft.com.
+客户端刷新间隔 : 30 秒
+客户端端口 : unspecified
+状态 : qualified 
+客户端类型 : teredo client
+网络 : managed
+NAT : cone NAT 
+特殊行为 : UPNP: 否，PortPreserving: 是
+本地映射 : 啥啥啥啥啥哈
+外部 NAT 映射 : 啥啥啥啥啥哈
 
 如果teredo的状态是dormant，就是说teredo配置成功了，也连上了服务器，但没有激活
 
