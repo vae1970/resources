@@ -1,3 +1,9 @@
+##### 引入包
+
+```javascript
+const amqp = require('amqplib');
+```
+
 ##### Consumer客户端连接MQ server
 
 ```javascript
