@@ -1,3 +1,9 @@
+##### 引包
+
+```javascript
+const puppeteer = require('puppeteer-core');
+```
+
 ##### chrome 配置
 
 ```javascript
@@ -28,5 +34,7 @@ const page = await browser.newPage();
 await page.goto(url, {waitUntil: ['domcontentloaded', 'networkidle0']});
 //	把页面打印为PDF
 await page.pdf({path: path, format: 'A4'});
+//	等待指定元素加载出来
+const dom = await page.$('html');
 ```
 
