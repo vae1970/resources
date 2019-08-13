@@ -7,3 +7,15 @@ git log
 git reset --soft <commit_id>
 ```
 
+##### git 删除commit中的文件
+
+```bash
+//	下载用户删除commit记录的工具
+wget http://repo1.maven.org/maven2/com/madgag/bfg/1.13.0/bfg-1.13.0.jar
+git clone --mirror git://example.com/some-big-repo.git
+cd some-big-repo.git
+java -jar ../bfg-1.13.0.jar --delete-files "xxx.md"
+git reflog expire --expire=now --all && git gc --prune=now --aggressive
+git push -f
+```
+
