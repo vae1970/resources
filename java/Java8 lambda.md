@@ -81,6 +81,25 @@ public static <F, S, T> Map<F, Map<S, List<T>>> groupByMultipleField(List<T> dat
 	return data.stream().collect(Collectors.groupingBy(groupField1, Collectors.groupingBy(groupField2)));
 }
 
+/**
+ * 去重
+ *
+ * @param list  origin list
+ * @param equal equal function
+ * @param value value function
+ * @param <T>   T
+ * @param <R>   R
+ * @param <V>   V
+ * @return 去重之后的集合
+ */
+public static <T, R, V> List<V> distinct(List<T> list, Function<T, R> equal, Function<T, V> value) {
+    if (list == null) {
+        return new ArrayList<>();
+    } else {
+        Map<R, V> collect = getNonEmptyList(list).stream().filter(i -> equal.apply(i) != null).collect(Collectors.toMap(equal, value, (a, b) -> a));
+        return Optional.of(collect).map(Map::values).map(ArrayList::new).orElse(new ArrayList<>());
+    }
+}
 ```
 
 ###### 2. Comparable
