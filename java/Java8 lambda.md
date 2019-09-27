@@ -163,4 +163,64 @@ Integer[] array = Arrays.asList(1, 2, 3).stream().mapToInt(i->i).boxed().toArray
 //	stream to array(wapper class)
 int[] arrayValue = Arrays.asList(1, 2, 3).stream().mapToInt(i -> i).toArray();
 ```
+###### 5. Page for list
+
+```java
+/**
+ * page
+ *
+ * @param list list
+ * @param size page size
+ * @param <T>  T
+ * @return List<List < T>>
+ */
+public static <T> List<List<T>> page(List<T> list, int size) {
+    list = list == null ? new ArrayList<>() : list;
+    List<T> finalList = list;
+    return IntStream.range(0, list.size()).mapToObj(i -> new IndexObject<T>(i, finalList.get(i))).collect(collectorByPage(size));
+}
+
+/**
+ * page
+ *
+ * @param size page size
+ * @param <T>  T
+ * @return List<List < T>>
+ */
+private static <T> Collector<IndexObject<T>, Map<Integer, List<T>>, List<List<T>>> collectorByPage(int size) {
+    Supplier<Map<Integer, List<T>>> supplier = HashMap::new;
+    BiConsumer<Map<Integer, List<T>>, IndexObject<T>> accumulator = (map, o) -> {
+        int key = o.getIndex() / size;
+        List<T> temp = map.get(key);
+        temp = temp == null ? new ArrayList<>() : temp;
+        temp.add(o.getValue());
+        map.put(key, temp);
+    };
+    BinaryOperator<Map<Integer, List<T>>> combiner = (a, b) -> {
+        a.forEach((index, value) -> {
+            List<T> temp = b.get(index);
+            temp = temp == null ? new ArrayList<>() : temp;
+            temp.addAll(value);
+            b.put(index, temp);
+        });
+        return b;
+    };
+    Function<Map<Integer, List<T>>, List<List<T>>> finisher = map -> new ArrayList<>(map.values());
+    return Collector.of(supplier, accumulator, combiner, finisher);
+}
+
+/**
+ * object with index
+ *
+ * @param <T>
+ */
+@Data
+@Accessors(chain = true)
+@NoArgsConstructor
+@AllArgsConstructor
+private static final class IndexObject<T> {
+    private Integer index;
+    private T value;
+}
+```
 
